@@ -1,4 +1,4 @@
-package com.fang.aads.search;
+package com.fang.aads.algo.search;
 
 /**
  * created by fang on 2019/3/3/003 21:19

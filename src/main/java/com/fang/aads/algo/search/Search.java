@@ -1,4 +1,4 @@
-package com.fang.aads.search;
+package com.fang.aads.algo.search;
 
 public interface Search {
 
