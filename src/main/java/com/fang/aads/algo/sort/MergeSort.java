@@ -2,84 +2,82 @@ package com.fang.aads.algo.sort;
 
 /**
  * created by fang on 2018/12/17/017 21:18
- * 归并排序：先把数组从中间分成前后两部分然后对前后部分分别排序再将排序好的重新组合在一起。
- * 这用到了分治的思想即分而治之，将一个大问题分解为多个小问题来解决。
+ * 归并排序：先把数组从中间分成前后两部分然后对前后部分分别排序再将排序好的重新组合在一起。这用到了分治的思想即分而治之，将一个大问题分解为多个小问题来解决
+ * 相同的两个数可以保持稳定的相对位置
+ * 时间复杂度：T(n) = 2*T(n/2) + K   ===>  任何情况下都是 O(nlogn)
+ * 空间复杂度：
  */
 public class MergeSort {
 
-    public static void mergeSort(int[] array) {
+    // merge_sort(p...r) = merge(merge_sort(p...q),merge_sort(q...r)) 且 q=(p+r)/2
+    // 终止条件：p>=r
 
-        int length = array.length;
+    public void merge_sort(int[] array) {
 
-        doMergeSort(array, 0, length - 1);
+        merge_sort_c(array, 0, array.length);
+
 
     }
 
-    private static int[] doMergeSort(int[] array, int p, int r) {
-        if (p + 1 == r) {
-            if (array[p] > array[r]) {
-                int temp = array[p];
-                array[p] = array[r];
-                array[r] = temp;
-            }
-            return array;
+    private void merge_sort_c(int[] a, int p, int r) {
+
+        if (p >= r) {
+            return;
         }
 
         int q = (p + r) / 2;
 
-        int[] a1 = doMergeSort(array, p, q);
-        int[] a2 = doMergeSort(array, q + 1, r);
-        merge(array, a1, a2);
+        merge_sort_c(a, p, q);
+        merge_sort_c(a, q + 1, r);
 
-        return array;
+        // 从最低层的分割开始 合并的过程就是排序
+        merge(a, p, q, r);
+
     }
 
-    /**
-     * 将两个有序的数组合并成一个
-     *
-     * @param array
-     * @param a1
-     * @param a2
-     */
-    public static void merge(int[] array, int[] a1, int[] a2) {
-        // 游标v1,v2
+
+    private void merge(int[] a, int p, int q, int r) {
+        // 两个游标
+        int i = p;
+        int j = q + 1;
+        //作为temp的临时存储下标
         int k = 0;
-        int j = 0;
-        int v1 = a1[k];
-        int v2 = a2[j];
-        int length = array.length;
-        for (int i = 0; i < length - 1; i++) {
-            if (v1 > v2) {
-                array[i] = v2;
-                if (j < a2.length - 1) {
-                    j++;
-                }
-                v2 = a2[j];
+        int[] temp = new int[r - q + 1];
+
+        // 两个数组比较并存放到temp
+        while (i < q & j < r) {
+            if (a[i] <= a[j]) {
+                temp[k++] = a[i++];
             } else {
-                array[i] = v1;
-                if (k < a1.length - 1) {
-                    k++;
-                }
-                v1 = a1[k];
+                temp[k++] = a[j++];
             }
         }
 
-    }
-
-    private static void print(int[] arrays) {
-        for (int i = 0; i < arrays.length; i++) {
-            System.out.println(arrays[i]);
+        // 判断哪个数组有剩余
+        int start = i;
+        int end = q;
+        if (j < i) {
+            start = j;
+            end = r;
+        }
+        while (start <= end) {
+            temp[k++] = temp[start++];
         }
 
+        // 将temp数据考回到a[p...r]数组
+        for (i = 0; i <= r - p; ++i) {
+//            ArrayIndexOutOfBoundsException
+            a[p + i] = temp[i];
+        }
     }
 
+
     public static void main(String[] args) {
-        int a[] = {1, 2, 3, 4, 5, 6};
-//        int a1[] = {1, 3, 5};
-//        int a2[] = {2, 4, 6};
-//        merge(a, a1, a2);
-        mergeSort(a);
-        print(a);
+        int[] a = {6, 3, 8, 20, 9, 4, 6, 10, 35};
+        MergeSort mergeSort = new MergeSort();
+        mergeSort.merge_sort(a);
+        System.out.println(a);
+
     }
 
 }
