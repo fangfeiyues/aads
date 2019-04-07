@@ -1,4 +1,4 @@
-package com.fang.aads.algo.linked;
+package com.fang.aads.dst.linked;
 
 /**
  * created by fang on 2018/12/8/008 23:55

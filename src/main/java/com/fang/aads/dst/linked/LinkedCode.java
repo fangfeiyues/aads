@@ -1,4 +1,4 @@
-package com.fang.aads.algo.linked;
+package com.fang.aads.dst.linked;
 
 /**
  * created by fang on 2018/12/8/008 18:31
@@ -41,14 +41,14 @@ public class LinkedCode {
     }
 
     /**
-     * 删除倒数第n个结点
+     * 单向链表删除倒数第n个结点
      */
     public void deleteLastN() {
 
     }
 
     /**
-     * 拿取链表的中间结点
+     * 单向拿取链表的中间结点
      */
     public void getMiddleNode() {
 
@@ -74,12 +74,6 @@ public class LinkedCode {
         linkNode4.next = linkNode5;
         linkNode5.next = linkNode6;
         return linkNode1;
-    }
-
-
-    public static void main(String[] args) {
-
-
     }
 
 }
