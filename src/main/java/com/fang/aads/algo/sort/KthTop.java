@@ -15,7 +15,7 @@ public class KthTop {
      * @param a
      * @return
      */
-    public static int getKth(int[] a, int k) {
+    private static int getKth(int[] a, int k) {
         if (a == null || a.length < k) {
             return -1;
         }

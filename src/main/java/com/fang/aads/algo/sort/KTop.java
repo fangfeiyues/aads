@@ -1,5 +1,6 @@
 package com.fang.aads.algo.sort;
 
+import java.util.PriorityQueue;
 import java.util.Random;
 
 /**
@@ -19,4 +20,19 @@ public class KTop {
             int tempNum = random.nextInt(Integer.MAX_VALUE);
         }
     }
+
+    public int findKthLargest(int[] nums, int k) {
+        // 小顶堆
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (int val : nums) {
+            pq.add(val);
+            // 维护堆的大小为 K
+            if (pq.size() > k) {
+                pq.poll();
+            }
+
+        }
+        return pq.peek();
+    }
+
 }
