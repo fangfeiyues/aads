@@ -19,10 +19,43 @@ public class DirectedCycle {
 
 
     private void dfs(Digraph G, int v) {
+
         onStack[v] = true;
         marked[v] = true;
 
+        // 点的
+        for (int w : G.adj(v)) {
+            if (hasCycle()) {
+                return;
 
+            } else if (!marked[w]) {
+                // 还没被标记的
+                edgeTo[w] = v;
+                dfs(G, w);
+
+            } else if (onStack[w]) {
+
+                // 如果已经被标记说明走过了 即edgeTo[w] = v 且 onStack 存在环了
+                cycle = new Stack<>();
+                for (int x = v; x != w; x = edgeTo[x]) {
+                    cycle.push(x);
+                }
+
+                cycle.push(w);
+                cycle.push(v);
+            }
+        }
+
+        onStack[v] = false;
+
+    }
+
+    private boolean hasCycle() {
+        return cycle != null;
+    }
+
+    public Iterable<Integer> cycle() {
+        return cycle;
     }
 
 }
