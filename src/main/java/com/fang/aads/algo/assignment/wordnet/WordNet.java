@@ -5,13 +5,14 @@ import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.ST;
 
-import java.util.Iterator;
-
 /**
  * @author by Feiyue on 2019/12/9 4:30 PM
  */
 public class WordNet {
 
+    /**
+     * count & get
+     */
     private ST<String, Bag<Integer>> bagST;
 
     private Digraph G;
@@ -28,11 +29,10 @@ public class WordNet {
             throw new IllegalArgumentException("Arguments Error");
         }
 
-        // confirm dingdian number
-        int count = 0;
-        In synsetsIn = new In(synsets);
         bagST = new ST<String, Bag<Integer>>();
+        int count = 0;
 
+        In synsetsIn = new In(synsets);
         while (synsetsIn.hasNextLine()) {
 
             String[] lines = synsetsIn.readLine().split(",");
@@ -52,7 +52,6 @@ public class WordNet {
             for (int i = 1; i < lines.length; i++) {
                 G.addEdge(v, Integer.parseInt(lines[i]));
             }
-
         }
 
     }
@@ -92,11 +91,15 @@ public class WordNet {
             throw new IllegalArgumentException();
         }
 
-        return 0;
+        SAP sap = new SAP(G);
+        Bag<Integer> a = bagST.get(nounA);
+        Bag<Integer> b = bagST.get(nounB);
+
+        return sap.length(a, b);
     }
 
     /**
-     * a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB  in a shortest ancestral path (defined below)
+     * a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB in a shortest ancestral path (defined below)
      *
      * @param nounA
      * @param nounB

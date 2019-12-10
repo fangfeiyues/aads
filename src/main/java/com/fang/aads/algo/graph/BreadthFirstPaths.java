@@ -1,7 +1,8 @@
 package com.fang.aads.algo.graph;
 
+import edu.princeton.cs.algs4.Queue;
+
 import java.util.Stack;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * 广度优先搜索
@@ -24,18 +25,17 @@ public class BreadthFirstPaths {
 
     private void bfs(Graph G, int s) throws InterruptedException {
         // 从v开始的邻接表遍历
-        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(100);
+        Queue<Integer> queue = new Queue<Integer>();
         marked[s] = true;
-        queue.put(s);
-
+        queue.enqueue(s);
         while (!queue.isEmpty()) {
-            int v = queue.peek();
+            int v = queue.dequeue();
             for (Integer w : G.adj(v)) {
                 if (!marked[w]) {
                     marked[w] = true;
                     // 能去w的是v
                     edgeTo[w] = v;
-                    queue.put(w);
+                    queue.enqueue(w);
                 }
             }
         }
