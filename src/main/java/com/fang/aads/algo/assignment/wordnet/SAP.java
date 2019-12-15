@@ -14,6 +14,10 @@ public class SAP {
 
     private Digraph G;
 
+    private Ancestor minAncestor = null;
+
+    private Ancestor minAncestorIter = null;
+
     /**
      * constructor takes a digraph (not necessarily a DAG)
      *
@@ -44,7 +48,6 @@ public class SAP {
         }
 
         List<Ancestor> ancestorList = new ArrayList<>();
-        Ancestor minAncestor = new Ancestor(0, Integer.MAX_VALUE);
 
         // Breadth v
         Queue<Integer> vQueue = new Queue<>();
@@ -77,6 +80,7 @@ public class SAP {
         int[] wLength = new int[total];
         wLength[v] = 0;
 
+        minAncestor = new Ancestor(0, Integer.MAX_VALUE);
         while (!wQueue.isEmpty()) {
             Integer n = wQueue.dequeue();
             for (int y : G.adj(n)) {
@@ -89,6 +93,7 @@ public class SAP {
 
                 // ancestor
                 if (vMarked[y]) {
+
                     Ancestor ancestor = new Ancestor(y, vLength[y] + wLength[y]);
                     ancestorList.add(ancestor);
                     if (minAncestor.getLength() > ancestor.getLength()) {
@@ -144,7 +149,13 @@ public class SAP {
      */
     public int ancestor(int v, int w) {
 
-        return -1;
+        length(v, w);
+
+        if (minAncestor == null) {
+            return -1;
+        }
+
+        return minAncestor.getVertices();
     }
 
     /**
@@ -155,7 +166,43 @@ public class SAP {
      * @return
      */
     public int length(Iterable<Integer> v, Iterable<Integer> w) {
+        if (v == null || w == null) {
+            throw new IllegalArgumentException("params error");
+        }
 
+
+        Ancestor ancestor = null;
+
+        ancestor = new Ancestor(0, Integer.MAX_VALUE);
+        for (int v1 : v) {
+            if (v1 < 0 || v1 >= G.V()) {
+                throw new IllegalArgumentException("params error");
+            }
+
+            for (int w1 : w) {
+
+                if (w1 < 0 || w1 >= G.V()) {
+                    throw new IllegalArgumentException("params error");
+                }
+
+                length(v1, w1);
+                if (minAncestor == null) {
+                    continue;
+                }
+
+
+                if (ancestor.getLength() > minAncestor.getLength()) {
+                    ancestor = minAncestor;
+                }
+
+            }
+
+        }
+
+        if (ancestor.getLength() != Integer.MAX_VALUE) {
+            minAncestorIter = ancestor;
+            return minAncestorIter.getLength();
+        }
         return -1;
     }
 
@@ -168,7 +215,13 @@ public class SAP {
      */
     public int ancestor(Iterable<Integer> v, Iterable<Integer> w) {
 
-        return -1;
+        length(v, w);
+
+        if (minAncestorIter == null) {
+            return -1;
+        }
+
+        return minAncestorIter.getVertices();
     }
 
 

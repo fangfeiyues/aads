@@ -5,6 +5,8 @@ import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.ST;
 
+import java.util.ArrayList;
+
 /**
  * @author by Feiyue on 2019/12/9 4:30 PM
  */
@@ -16,6 +18,9 @@ public class WordNet {
     private ST<String, Bag<Integer>> bagST;
 
     private Digraph G;
+
+    private final ArrayList<String> idList;
+
 
     /**
      * constructor takes the name of the two input files
@@ -30,18 +35,20 @@ public class WordNet {
         }
 
         bagST = new ST<String, Bag<Integer>>();
+        idList = new ArrayList<String>();
         int count = 0;
 
         In synsetsIn = new In(synsets);
         while (synsetsIn.hasNextLine()) {
-
             String[] lines = synsetsIn.readLine().split(",");
-
-            Bag<Integer> bag = new Bag<Integer>();
-            bag.add(Integer.parseInt(lines[0]));
-            bagST.put(lines[1], bag);
-
+            String[] a = lines[1].split(" ");
+            for (int i = 0; i < a.length; i++) {
+                Bag<Integer> bag = new Bag<Integer>();
+                bag.add(Integer.parseInt(lines[0]));
+                bagST.put(a[i], bag);
+            }
             count++;
+            idList.add(lines[1]);
         }
 
         G = new Digraph(count);
@@ -107,7 +114,25 @@ public class WordNet {
      */
     public String sap(String nounA, String nounB) {
 
-        return "";
+        if (nounA == null || nounB == null) {
+            throw new java.lang.IllegalArgumentException("the word is null");
+        }
+
+        if (!isNoun(nounA)) {
+            throw new java.lang.IllegalArgumentException("the String nounA is no in WordNet");
+        }
+
+
+        if (!isNoun(nounB)) {
+            throw new java.lang.IllegalArgumentException("the String nounB is no in WordNet");
+        }
+
+        Bag<Integer> valueA = bagST.get(nounA);
+        Bag<Integer> valueB = bagST.get(nounB);
+
+        SAP s = new SAP(G);
+        int id = s.ancestor(valueA, valueB);
+        return idList.get(id);
     }
 
     /**
