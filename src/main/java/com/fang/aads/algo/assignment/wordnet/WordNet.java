@@ -54,12 +54,15 @@ public class WordNet {
         G = new Digraph(count);
         In hypernymsIn = new In(hypernyms);
         while (hypernymsIn.hasNextLine()) {
+
             String[] lines = synsetsIn.readLine().split(",");
             int v = Integer.parseInt(lines[0]);
             for (int i = 1; i < lines.length; i++) {
                 G.addEdge(v, Integer.parseInt(lines[i]));
             }
         }
+
+
 
     }
 
