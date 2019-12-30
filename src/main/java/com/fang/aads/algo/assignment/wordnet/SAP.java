@@ -1,6 +1,11 @@
 package com.fang.aads.algo.assignment.wordnet;
 
-import edu.princeton.cs.algs4.*;
+
+import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +17,7 @@ import java.util.List;
  */
 public class SAP {
 
-    private Digraph G;
+    private final Digraph G;
 
     private Ancestor minAncestor = null;
 
@@ -44,7 +49,7 @@ public class SAP {
 
         int total = G.V();
         if (v < 0 || w < 0 || v >= total || w >= total) {
-            throw new java.lang.IllegalArgumentException("Arguments Error");
+            throw new IllegalArgumentException("Arguments Error");
         }
 
         List<Ancestor> ancestorList = new ArrayList<>();
@@ -104,7 +109,7 @@ public class SAP {
             }
         }
 
-        if (ancestorList.size() == 0) {
+        if (ancestorList.isEmpty()) {
             return -1;
         }
 
@@ -112,7 +117,7 @@ public class SAP {
     }
 
 
-    public class Ancestor {
+    private class Ancestor {
 
         private int vertices;
 

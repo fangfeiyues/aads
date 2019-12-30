@@ -15,9 +15,9 @@ public class WordNet {
     /**
      * count & get
      */
-    private ST<String, Bag<Integer>> bagST;
+    private final ST<String, Bag<Integer>> bagST;
 
-    private Digraph G;
+    private final Digraph G;
 
     private final ArrayList<String> idList;
 
@@ -61,7 +61,6 @@ public class WordNet {
                 G.addEdge(v, Integer.parseInt(lines[i]));
             }
         }
-
 
 
     }
@@ -118,16 +117,16 @@ public class WordNet {
     public String sap(String nounA, String nounB) {
 
         if (nounA == null || nounB == null) {
-            throw new java.lang.IllegalArgumentException("the word is null");
+            throw new IllegalArgumentException("the word is null");
         }
 
         if (!isNoun(nounA)) {
-            throw new java.lang.IllegalArgumentException("the String nounA is no in WordNet");
+            throw new IllegalArgumentException("the String nounA is no in WordNet");
         }
 
 
         if (!isNoun(nounB)) {
-            throw new java.lang.IllegalArgumentException("the String nounB is no in WordNet");
+            throw new IllegalArgumentException("the String nounB is no in WordNet");
         }
 
         Bag<Integer> valueA = bagST.get(nounA);

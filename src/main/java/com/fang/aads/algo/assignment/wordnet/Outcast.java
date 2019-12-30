@@ -4,6 +4,7 @@ package com.fang.aads.algo.assignment.wordnet;
  * @author by Feiyue on 2019/12/17 8:44 PM
  */
 public class Outcast {
+
     private final WordNet wordNet;
 
     public Outcast(WordNet wordnet) {
