@@ -21,7 +21,7 @@ public class SP {
 
     /**
      * 放松边v->w 意味着检查s到w的最短路径是否是先从s到v，然后再由v到w。如果是，则根据这个情况更新数据结构的内容
-     *
+     * 实现放松从给定顶点的所有边
      * @param e
      */
     private void relax(DirectedEdge e) {
