@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * @author created by fang on 2020/5/19/019 23:05
  */
-public class Solution {
+public class StringSolution {
 
     /**
      * 给定一个非空字符串 s，最多删除一个字符。判断是否能成为回文字符串
@@ -50,7 +50,7 @@ public class Solution {
 
             // 字母入栈
             if (Character.isDefined(chars)) {
-                stk.addLast(chars);
+//                stk.addLast(chars);
 
             }
         }
