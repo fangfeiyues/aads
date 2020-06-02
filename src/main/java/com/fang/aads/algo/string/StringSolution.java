@@ -1,5 +1,7 @@
 package com.fang.aads.algo.string;
 
+import com.fang.aads.algo.link.Solution;
+
 import java.util.LinkedList;
 
 /**
@@ -18,6 +20,7 @@ public class StringSolution {
     public boolean validPalindrome(String s) {
         int count = 0;
         int length = s.length();
+
         for (int i = 0; i < length; i++) {
             if (s.toCharArray()[i] != s.toCharArray()[length - 1 - i]) {
 
@@ -30,12 +33,12 @@ public class StringSolution {
     }
 
     /**
-     * 给定一个经过编码的字符串，返回它解码后的字符串。
+     * https://leetcode-cn.com/problems/decode-string
+     *
      * <p>
+     * 给定一个经过编码的字符串，返回它解码后的字符串
      * 编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。
      * <p>
-     * 来源：力扣（LeetCode）
-     * 链接：https://leetcode-cn.com/problems/decode-string
      *
      * @param s sd3[qa5[op]ry]
      * @return
@@ -43,7 +46,11 @@ public class StringSolution {
     public String decodeString(String s) {
 
         // 1.栈
+        // 数字，[，字母入栈；
+        // ] 开始出栈
+        
         LinkedList<String> stk = new LinkedList<>();
+
         int cur = 0;
         while (cur < s.length()) {
             char chars = s.charAt(cur);
@@ -59,10 +66,5 @@ public class StringSolution {
         return "";
     }
 
-
-    public static void main(String[] args) {
-
-
-    }
 
 }
