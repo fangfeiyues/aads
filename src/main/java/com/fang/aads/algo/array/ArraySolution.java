@@ -30,15 +30,30 @@ public class ArraySolution {
      * https://leetcode-cn.com/problems/house-robber/
      * <p>
      * 给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。
-     *
+     * <p>
      * - 动态规划
+     *
      * @param nums
      * @return
      */
     public int rob(int[] nums) {
 
 
+        return 0;
+    }
+
+
+    /**
+     * https://leetcode-cn.com/problems/sum-of-mutated-array-closest-to-target/
+     *
+     * @param arr
+     * @param target
+     * @return
+     */
+    public int findBestValue(int[] arr, int target) {
 
         return 0;
     }
+
+
 }
