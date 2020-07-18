@@ -103,7 +103,7 @@ public class SeamCarver {
     // sequence of indices for vertical seam
     public int[] findVerticalSeam() {
         int[] seam = new int[height];
-        double[][] 
+//        double[][]
 
         return null;
     }

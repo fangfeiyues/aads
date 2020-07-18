@@ -12,6 +12,9 @@ public class NumberSolution {
      */
     public int sumNums(int n) {
 
+        // 1.µÝ¹é·½·¨
+
+
         return 0;
     }
 

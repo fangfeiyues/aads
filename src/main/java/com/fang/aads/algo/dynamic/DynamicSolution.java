@@ -38,7 +38,7 @@ public class DynamicSolution {
 
             }
 
-            //把第i个物品放入背包
+            // 把第i个物品放入背包
             // 在不超过总量 w-weight[i] 的范围内如果之前的物品在背包内则此次重量+背包 weight[i]+j
             // 这样就表示之前只要在背包有过可能达到达的重量都会加上这次放入放入重量
             for (int j = 0; j <= w - weight[i]; ++j) {
