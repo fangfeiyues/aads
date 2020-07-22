@@ -66,11 +66,13 @@ public class AES {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        String content = "87455f0bf6ba40c180b0942bc075cbaa";
+        String content = "87455f0bf6ba40cdasdasfsdgdfgd";
 //        87455f0bf6ba40c180b0942bc075cbaa, fn95yvtt44, 2826ae5939
-        String encryptResult = encrypt("111122223333qwqq111122223333qwqq", content);
+        String key = "1111222233334444";
+        System.out.println("key值：" + key);
+        String encryptResult = encrypt(key, content);
         System.out.println("加密后：" + encryptResult);
-        String decryptResult = decrypt("111122223333qwqq111122223333qwqq", encryptResult);
+        String decryptResult = decrypt(key, encryptResult);
         System.out.println("解密完成后：" + decryptResult);
     }
 
