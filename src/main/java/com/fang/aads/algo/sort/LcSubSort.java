@@ -3,7 +3,8 @@ package com.fang.aads.algo.sort;
 import com.alibaba.fastjson.JSON;
 
 /**
- * 可应用场景：
+ * 可应用场景：对某段数组内的非顺序的数字进行排序（场景较少）
+ * 如果是要抽取这段非顺序的数字或做判断还可以
  *
  * @author created by fang on 2020/9/28/028 0:52
  */
